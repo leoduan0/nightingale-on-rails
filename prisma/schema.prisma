@@ -1,0 +1,103 @@
+generator client {
+    provider = "prisma-client"
+    output   = "../src/generated/prisma"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+enum RISK_TIER {
+    HIGH
+    MEDIUM
+    LOW
+}
+
+enum ROLE {
+    PATIENT
+    CLINICIAN
+}
+
+model Patient {
+    id            String             @id @default(cuid())
+    email         String             @unique
+    firstName     String             @map("first_name")
+    lastName      String             @map("last_name")
+    consent       PatientConsent?
+    questionnaire Questionnaire?
+    conversation  Conversation?
+    clinicians    ClinicianPatient[]
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("patient")
+}
+
+model Clinician {
+    id        String             @id @default(cuid())
+    email     String             @unique
+    firstName String             @map("first_name")
+    lastName  String             @map("last_name")
+    patients  ClinicianPatient[]
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("clinician")
+}
+
+model ClinicianPatient {
+    id          String    @id @default(cuid())
+    patient     Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+    patientId   String    @map("patient_id")
+    clinician   Clinician @relation(fields: [clinicianId], references: [id], onDelete: Cascade)
+    clinicianId String    @map("clinician_id")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@unique([clinicianId, patientId])
+    @@map("clinician_patient")
+}
+
+model PatientConsent {
+    id        String  @id @default(cuid())
+    version   String
+    patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+    patientId String  @unique @map("patient_id")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("patient_consent")
+}
+
+model Questionnaire {
+    id        String  @id @default(cuid())
+    age       Int
+    gender    String
+    summary   String?
+    patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+    patientId String  @unique @map("patient_id")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("questionnaire")
+}
+
+model Conversation {
+    id         String    @id @default(cuid())
+    transcript Json
+    summary    String?
+    riskTier   RISK_TIER @default(LOW) @map("risk_tier")
+    endedAt    DateTime? @map("ended_at")
+    patient    Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+    patientId  String    @unique @map("patient_id")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("conversation")
+}
