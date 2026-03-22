@@ -1,7 +1,7 @@
-import { fail, redirect } from '@sveltejs/kit'
+import { redirect } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from './$types'
 import prisma from '$lib/server/prisma'
-import { superValidate } from 'sveltekit-superforms'
+import { message, superValidate } from 'sveltekit-superforms'
 import { formSchema } from './schema'
 import { zod4 } from 'sveltekit-superforms/adapters'
 import { ROLE } from '../../generated/prisma/enums'
@@ -26,35 +26,39 @@ export const actions: Actions = {
 
 		const form = await superValidate(event, zod4(formSchema))
 		if (!form.valid) {
-			return fail(400, {
-				message: 'Please provide a valid email, password, and first name, last name, and role.'
-			})
+			return message(
+				form,
+				'Please provide a valid email, password, and first name, last name, and role.',
+				{ status: 400 }
+			)
 		}
 
 		const { email, password, firstName, lastName, role } = form.data
 
 		const { data, error } = await supabase.auth.signUp({ email, password })
 
-		if (!data || !data.user || error) {
-			return fail(400, { success: false, email, message: error?.message })
+		if (error) {
+			return message(form, error.message, { status: 400 })
 		}
 
-		try {
-			if (role === ROLE.PATIENT) {
-				await prisma.patient.create({
-					data: { id: data.user.id, email: email, firstName: firstName, lastName: lastName }
-				})
-			} else {
-				await prisma.clinician.create({
-					data: { id: data.user.id, email: email, firstName: firstName, lastName: lastName }
-				})
-			}
-		} catch {
-			return fail(409, { message: 'Profile already exists for this account.' })
+		if (!data.user) {
+			throw new Error('No error but no data.user')
 		}
 
-		// await supabase.auth.signInWithPassword({ email, password });
+		if (role === ROLE.PATIENT) {
+			await prisma.patient.create({
+				data: { id: data.user.id, email: email, firstName: firstName, lastName: lastName }
+			})
+		} else if (role === ROLE.CLINICIAN) {
+			await prisma.clinician.create({
+				data: { id: data.user.id, email: email, firstName: firstName, lastName: lastName }
+			})
+		} else {
+			return message(form, 'Role is invalid', { status: 400 })
+		}
 
-		return { success: true, message: 'Successfully signed up!' }
+		await supabase.auth.signInWithPassword({ email, password })
+
+		return message(form, 'Signed up successfully!')
 	}
 }

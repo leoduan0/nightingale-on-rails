@@ -1,5 +1,5 @@
-import { fail } from '@sveltejs/kit'
-import type { Clinician } from '@prisma/client'
+import { error, fail, redirect } from '@sveltejs/kit'
+import type { Clinician } from '../../generated/prisma/client'
 import { z } from 'zod'
 import prisma from '$lib/server/prisma'
 import { requireSession, resolveRole } from '$lib/server/auth'
@@ -14,9 +14,9 @@ const questionnaireSchema = z.object({
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	const { user } = await locals.safeGetSession()
-	if (!user) throw error(404, 'Not signed in')
+	if (!user) redirect(303, '/sign-in')
 
-	const role = await resolveRole()
+	const role = await resolveRole(locals)
 
 	switch (role) {
 		case ROLE.PATIENT: {
@@ -112,7 +112,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 export const actions: Actions = {
 	saveConsent: async ({ locals }) => {
 		const { user } = await requireSession(locals)
-		const role = await resolveRole()
+		const role = await resolveRole(locals)
 		if (role !== ROLE.PATIENT) return fail(403, { message: 'Only patients can submit consent.' })
 
 		const patient = await prisma.patient.findUnique({ where: { id: user.id } })
@@ -128,7 +128,7 @@ export const actions: Actions = {
 	},
 	saveQuestionnaire: async ({ request, locals }) => {
 		const { user } = await requireSession(locals)
-		const role = await resolveRole()
+		const role = await resolveRole(locals)
 		if (role !== ROLE.PATIENT)
 			return fail(403, { message: 'Only patients can submit questionnaire.' })
 

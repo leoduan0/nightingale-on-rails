@@ -1,6 +1,6 @@
-import { fail, redirect } from '@sveltejs/kit'
+import { redirect } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from './$types'
-import { superValidate } from 'sveltekit-superforms'
+import { message, superValidate } from 'sveltekit-superforms'
 import { formSchema } from './schema'
 import { zod4 } from 'sveltekit-superforms/adapters'
 
@@ -22,14 +22,17 @@ export const actions: Actions = {
 			locals: { supabase }
 		} = event
 		const form = await superValidate(event, zod4(formSchema))
-		if (!form.valid)
-			return fail(400, { message: 'Please provide a valid email, password, and role.' })
+		if (!form.valid) {
+			return message(form, 'Please provide a valid email and password.', { status: 400 })
+		}
 
 		const { email, password } = form.data
 
 		const { error } = await supabase.auth.signInWithPassword({ email, password })
-		if (error) return fail(400, { success: false, email, message: error.message })
+		if (error) {
+			return message(form, error.message, { status: 400 })
+		}
 
-		return { success: true, message: 'Successfully signed in!' }
+		return message(form, 'Signed in successfully!')
 	}
 }

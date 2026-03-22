@@ -10,7 +10,7 @@ export const POST: RequestHandler = async ({ locals }) => {
 	const { user } = await locals.safeGetSession()
 	if (!user) return json({ error: 'Unauthorized' }, { status: 401 })
 
-	const role = await resolveRole()
+	const role = await resolveRole(locals)
 	if (role !== ROLE.PATIENT)
 		return json({ error: 'Only patients can end this conversation.' }, { status: 403 })
 

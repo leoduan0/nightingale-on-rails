@@ -11,14 +11,10 @@ export const requireSession = async (locals: App.Locals) => {
 	return { session, user }
 }
 
-export const resolveRole = async () => {
-	const {
-		data: { user }
-	} = await supabase.auth.getUser()
+export const resolveRole = async (locals: App.Locals) => {
+	const { user } = await locals.safeGetSession()
 
-	if (!user) {
-		throw new Error('Not signed in')
-	}
+	if (!user) throw new Error('Not signed in')
 
 	const prismaPatient = await prisma.patient.findUnique({
 		where: {

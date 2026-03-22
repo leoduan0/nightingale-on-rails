@@ -15,7 +15,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	const { user } = await locals.safeGetSession()
 	if (!user) return json({ error: 'Not signed in' }, { status: 401 })
 
-	const role = await resolveRole()
+	const role = await resolveRole(locals)
 	if (role !== ROLE.PATIENT) return json({ error: 'Only patients can chat.' }, { status: 403 })
 
 	const patient = await prisma.patient.findUnique({

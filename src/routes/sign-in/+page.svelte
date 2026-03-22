@@ -4,36 +4,71 @@
 	import { formSchema, type FormSchema } from './schema'
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms'
 	import { zod4Client } from 'sveltekit-superforms/adapters'
+	import { toast } from 'svelte-sonner'
 
 	let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } = $props()
 
 	const form = superForm(data.form, {
-		validators: zod4Client(formSchema)
+		validators: zod4Client(formSchema),
+		onUpdate: ({ form }) => {
+			if (form.valid) {
+				toast.success(String(form.message))
+			} else {
+				toast.error(String(form.message))
+			}
+		}
 	})
 
-	const { form: formData, enhance } = form
+	const { form: formData, enhance, message, submitting } = form
 </script>
 
-<form method="POST" use:enhance>
-	<Form.Field {form} name="email">
-		<Form.Control>
-			{#snippet children({ props })}
-				<Form.Label>Email</Form.Label>
-				<Input {...props} bind:value={$formData.email} />
-			{/snippet}
-		</Form.Control>
-		<Form.FieldErrors />
-	</Form.Field>
+<section class="mx-auto max-w-xl">
+	<div
+		class="rounded-3xl border border-sky-100/90 bg-white/92 p-6 shadow-lg shadow-sky-900/10 sm:p-8"
+	>
+		<p class="text-sm font-bold tracking-wide text-sky-700 uppercase">Welcome back</p>
+		<h1 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900">
+			Sign in to continue care
+		</h1>
+		<p class="mt-2 text-sm text-slate-600">
+			Your intake records are private and only visible to authorized clinicians and you.
+		</p>
 
-	<Form.Field {form} name="password">
-		<Form.Control>
-			{#snippet children({ props })}
-				<Form.Label>Password</Form.Label>
-				<Input {...props} bind:value={$formData.password} type="password" />
-			{/snippet}
-		</Form.Control>
-		<Form.FieldErrors />
-	</Form.Field>
+		<form method="POST" use:enhance class="mt-6 space-y-4">
+			<Form.Field {form} name="email">
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>Email</Form.Label>
+						<Input {...props} bind:value={$formData.email} type="email" autocomplete="email" />
+					{/snippet}
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
 
-	<Form.Button>Submit</Form.Button>
-</form>
+			<Form.Field {form} name="password">
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>Password</Form.Label>
+						<Input
+							{...props}
+							bind:value={$formData.password}
+							type="password"
+							autocomplete="current-password"
+						/>
+					{/snippet}
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+
+			<Form.Button disabled={$submitting} class="w-full">
+				{$submitting ? 'Signing in...' : 'Sign in'}
+			</Form.Button>
+		</form>
+
+		<p class="mt-4 text-sm text-slate-600">
+			New to Nightingale on Rails?
+			<a class="font-semibold text-sky-700 hover:text-sky-800" href="/sign-up">Create an account</a
+			>.
+		</p>
+	</div>
+</section>

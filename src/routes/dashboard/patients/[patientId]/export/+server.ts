@@ -9,7 +9,7 @@ export const GET: RequestHandler = async ({ params, locals }) => {
 	const { user } = await locals.safeGetSession()
 	if (!user) throw error(401, 'Not signed in')
 
-	const role = await resolveRole()
+	const role = await resolveRole(locals)
 	if (role !== ROLE.CLINICIAN) throw error(403, 'Forbidden')
 
 	const clinician = await prisma.clinician.findUnique({ where: { id: user.id } })

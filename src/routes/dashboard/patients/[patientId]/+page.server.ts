@@ -6,7 +6,7 @@ import { ROLE } from '../../../../generated/prisma/enums'
 
 export const load: PageServerLoad = async ({ params, locals }) => {
 	const { user } = await requireSession(locals)
-	const role = await resolveRole()
+	const role = await resolveRole(locals)
 	if (role !== ROLE.CLINICIAN) throw error(403, 'User is not clinician')
 
 	const clinician = await prisma.clinician.findUnique({ where: { id: user.id } })

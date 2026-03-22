@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import { onMount } from 'svelte'
 	import { Button } from '$lib/components/ui/button'
 	import { Card } from '$lib/components/ui/card'
 	import { Input } from '$lib/components/ui/input'
 	import { Select } from '$lib/components/ui/select'
+	import { toast } from 'svelte-sonner'
 	import type { ChatMessage } from '$lib/types/chat'
 	import { ROLE } from '../../generated/prisma/enums'
 
@@ -47,14 +49,13 @@
 
 {#if data.role === ROLE.PATIENT}
 	<section class="space-y-4">
-		<Card>
+		<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
 			<h1 class="text-3xl font-bold">Patient Dashboard</h1>
-			<p class="text-slate-600">
-				Welcome back, {data.patient.firstName}. Your information stays private and encrypted in
-				transit.
+			<p class="text-slate-600/95">
+				Welcome back, {data.patient.firstName}.
 			</p>
 			{#if data.patient.clinicians.length > 0}
-				<p class="mt-2 text-sm text-slate-600">
+				<p class="mt-2 text-sm text-slate-600/95">
 					Assigned clinician:
 					<strong
 						>{data.patient.clinicians[0].firstName} {data.patient.clinicians[0].lastName}</strong
@@ -64,7 +65,7 @@
 		</Card>
 
 		{#if !data.patient.consent}
-			<Card>
+			<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
 				<h2 class="text-xl font-bold">Consent Required</h2>
 				<p class="text-slate-700">
 					By continuing, you consent to collection and processing of your demographic intake and
@@ -78,7 +79,7 @@
 		{/if}
 
 		<div class="grid gap-4 md:grid-cols-2">
-			<Card>
+			<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
 				<h2 class="text-xl font-bold">Demographics Questionnaire</h2>
 				<form method="POST" action="?/saveQuestionnaire" class="mt-3 space-y-3">
 					<label class="block space-y-1">
@@ -117,7 +118,7 @@
 				</form>
 			</Card>
 
-			<Card>
+			<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
 				<h2 class="text-xl font-bold">AI Intake Chat</h2>
 				<p class="text-sm text-slate-600">
 					This assistant asks probing intake questions and does not provide therapeutic treatment
@@ -130,8 +131,8 @@
 						{#each chatMessages as chat (chat.content)}
 							<article
 								class={chat.role === 'user'
-									? 'ml-6 rounded-md bg-slate-100 p-2 text-sm'
-									: 'mr-6 rounded-md bg-teal-50 p-2 text-sm'}
+									? 'ml-6 rounded-xl border border-sky-100 bg-sky-50/75 p-2 text-sm'
+									: 'mr-6 rounded-xl border border-cyan-100 bg-cyan-50/80 p-2 text-sm'}
 							>
 								<p class="mb-1 font-semibold">{chat.role === 'user' ? 'You' : 'Intake AI'}</p>
 								<p>{chat.content}</p>
@@ -141,7 +142,7 @@
 				</div>
 				<div class="mt-3 flex gap-2">
 					<Input bind:value={message} placeholder="Share what has been most difficult lately..." />
-					<Button type="button" on:click={sendMessage} disabled={!data.patient.consent || sending}
+					<Button type="button" onclick={sendMessage} disabled={!data.patient.consent || sending}
 						>Send</Button
 					>
 				</div>
@@ -149,7 +150,7 @@
 					type="button"
 					variant="outline"
 					class="mt-2"
-					on:click={endConversation}
+					onclick={endConversation}
 					disabled={!data.patient.consent || ending}
 				>
 					End conversation
@@ -157,7 +158,7 @@
 			</Card>
 		</div>
 
-		<Card>
+		<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
 			<h2 class="text-xl font-bold">Review and Edit AI Summaries</h2>
 			<form method="POST" action="?/saveSummaryEdits" class="mt-3 space-y-3" use:enhance>
 				<label class="block space-y-1">
@@ -165,7 +166,7 @@
 					<textarea
 						name="questionnaireSummary"
 						bind:value={localQuestionnaireSummary}
-						class="min-h-24 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm"
+						class="min-h-24 w-full rounded-xl border border-sky-200 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none"
 					></textarea>
 				</label>
 				<label class="block space-y-1">
@@ -173,7 +174,7 @@
 					<textarea
 						name="conversationSummary"
 						bind:value={localConversationSummary}
-						class="min-h-36 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm"
+						class="min-h-36 w-full rounded-xl border border-sky-200 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none"
 					></textarea>
 				</label>
 				<Button type="submit">Save summary edits</Button>
@@ -185,9 +186,9 @@
 	</section>
 {:else}
 	<section class="space-y-4">
-		<Card>
+		<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
 			<h1 class="text-3xl font-bold">Clinician Dashboard</h1>
-			<p class="text-slate-600">
+			<p class="text-slate-600/95">
 				Welcome, Dr. {data.clinician.lastName}. Search, filter, and review your assigned patients.
 			</p>
 			<form method="GET" class="mt-4 grid gap-3 sm:grid-cols-4">
@@ -217,12 +218,12 @@
 
 		<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 			{#if data.patients.length === 0}
-				<Card>
+				<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
 					<p class="text-slate-600">No assigned patients match your filters yet.</p>
 				</Card>
 			{:else}
 				{#each data.patients as patient (patient.id)}
-					<Card>
+					<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
 						<h2 class="text-xl font-bold">{patient.firstName} {patient.lastName}</h2>
 						<p class="text-sm text-slate-600">Email: {patient.email}</p>
 						<p class="text-sm text-slate-600">
@@ -232,7 +233,7 @@
 							Chat ended: {patient.conversation?.endedAt ? 'Yes' : 'No'}
 						</p>
 						<a
-							class="mt-2 inline-block font-semibold text-teal-700"
+							class="mt-2 inline-block font-semibold text-sky-700 hover:text-sky-800"
 							href={`/dashboard/patients/${patient.id}`}>Open profile</a
 						>
 					</Card>
