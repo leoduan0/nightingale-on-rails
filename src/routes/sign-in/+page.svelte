@@ -2,9 +2,9 @@
 	import * as Form from '$lib/components/ui/form/index.js'
 	import { Input } from '$lib/components/ui/input/index.js'
 	import { formSchema, type FormSchema } from './schema'
+	import { toast } from 'svelte-sonner'
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms'
 	import { zod4Client } from 'sveltekit-superforms/adapters'
-	import { toast } from 'svelte-sonner'
 
 	let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } = $props()
 
@@ -24,7 +24,7 @@
 
 <section class="mx-auto max-w-xl">
 	<div
-		class="rounded-3xl border border-sky-100/90 bg-white/92 p-6 shadow-lg shadow-sky-900/10 sm:p-8"
+		class="rounded-3xl border border-sky-100/90 bg-white/90 p-6 shadow-lg shadow-sky-900/10 sm:p-8"
 	>
 		<p class="text-sm font-bold tracking-wide text-sky-700 uppercase">Welcome back</p>
 		<h1 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900">

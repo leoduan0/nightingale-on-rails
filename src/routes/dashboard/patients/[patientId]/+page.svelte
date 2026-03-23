@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Card } from '$lib/components/ui/card'
+
 	let { data } = $props()
 	const transcript =
 		(data.patient.conversation?.transcript as
@@ -8,7 +9,7 @@
 </script>
 
 <section class="space-y-4">
-	<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
+	<Card class="border border-sky-100/80 bg-white/90 shadow-sm shadow-sky-900/10">
 		<h1 class="text-3xl font-bold">{data.patient.firstName} {data.patient.lastName}</h1>
 		<p class="text-sm text-slate-600">{data.patient.email}</p>
 		<a
@@ -18,7 +19,7 @@
 	</Card>
 
 	<div class="grid gap-4 md:grid-cols-2">
-		<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
+		<Card class="border border-sky-100/80 bg-white/90 shadow-sm shadow-sky-900/10">
 			<h2 class="text-xl font-bold">Questionnaire</h2>
 			<p class="text-slate-700">Age: {data.patient.questionnaire?.age ?? 'Not provided'}</p>
 			<p class="text-slate-700">Gender: {data.patient.questionnaire?.gender ?? 'Not provided'}</p>
@@ -26,7 +27,7 @@
 			<p>{data.summaries.questionnaire || 'No summary yet.'}</p>
 		</Card>
 
-		<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
+		<Card class="border border-sky-100/80 bg-white/90 shadow-sm shadow-sky-900/10">
 			<h2 class="text-xl font-bold">Conversation Summary</h2>
 			<p>{data.summaries.conversation || 'No summary yet.'}</p>
 			<p class="mt-3 text-sm text-slate-600">Triage Label</p>
@@ -34,7 +35,7 @@
 		</Card>
 	</div>
 
-	<Card class="border border-sky-100/80 bg-white/92 shadow-sm shadow-sky-900/10">
+	<Card class="border border-sky-100/80 bg-white/90 shadow-sm shadow-sky-900/10">
 		<h2 class="text-xl font-bold">Chatlog</h2>
 		<div class="mt-3 space-y-2">
 			{#if transcript.length === 0}

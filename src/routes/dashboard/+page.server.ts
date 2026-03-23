@@ -1,16 +1,11 @@
-import { error, fail, redirect } from '@sveltejs/kit'
-import type { Clinician } from '../../generated/prisma/client'
-import { z } from 'zod'
-import prisma from '$lib/server/prisma'
-import { requireSession, resolveRole } from '$lib/server/auth'
 import { summarizeQuestionnaire } from '$lib/server/ai'
-import type { Actions, PageServerLoad } from './$types'
+import { requireSession, resolveRole } from '$lib/server/auth'
+import prisma from '$lib/server/prisma'
+import type { Clinician } from '../../generated/prisma/client'
 import { ROLE } from '../../generated/prisma/enums'
-
-const questionnaireSchema = z.object({
-	age: z.coerce.number().int().min(1).max(120),
-	gender: z.string().min(1).max(80)
-})
+import type { Actions, PageServerLoad } from './$types'
+import { formSchema } from './schema'
+import { error, fail, redirect } from '@sveltejs/kit'
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	const { user } = await locals.safeGetSession()
@@ -120,13 +115,13 @@ export const actions: Actions = {
 
 		await prisma.patientConsent.upsert({
 			where: { patientId: patient.id },
-			create: { patientId: patient.id, version: 'v1' },
-			update: { createdAt: new Date(), version: 'v1' }
+			create: { patient: { connect: { id: patient.id } } },
+			update: { createdAt: new Date() }
 		})
 
 		return { success: true }
 	},
-	saveQuestionnaire: async ({ request, locals }) => {
+	submitQuestionnaire: async ({ request, locals }) => {
 		const { user } = await requireSession(locals)
 		const role = await resolveRole(locals)
 		if (role !== ROLE.PATIENT)
@@ -136,10 +131,14 @@ export const actions: Actions = {
 			where: { id: user.id },
 			include: { consent: true }
 		})
-		if (!patient?.consent) return fail(400, { message: 'Consent is required before intake.' })
+
+		if (!patient) return fail(403, { message: 'No patient.' })
+
+		if (!patient.consent) return fail(400, { message: 'Consent is required before intake.' })
 
 		const data = Object.fromEntries(await request.formData())
-		const parsed = questionnaireSchema.safeParse(data)
+		const parsed = formSchema.safeParse(data)
+
 		if (!parsed.success) return fail(400, { message: 'Age and gender are required.' })
 
 		const { age, gender } = parsed.data
@@ -147,7 +146,7 @@ export const actions: Actions = {
 
 		await prisma.questionnaire.upsert({
 			where: { patientId: patient.id },
-			create: { patientId: patient.id, age, gender, summary },
+			create: { patient: { connect: { id: patient.id } }, age, gender, summary },
 			update: { age, gender, summary }
 		})
 

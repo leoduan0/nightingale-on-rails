@@ -1,7 +1,7 @@
-import { redirect } from '@sveltejs/kit'
 import prisma from '$lib/server/prisma'
-import { ROLE } from '../../generated/prisma/enums'
 import { supabase } from '$lib/supabase-client'
+import { ROLE } from '../../generated/prisma/enums'
+import { redirect } from '@sveltejs/kit'
 
 export const requireSession = async (locals: App.Locals) => {
 	const { session, user } = await locals.safeGetSession()

@@ -1,5 +1,5 @@
 <section
-	class="rounded-3xl border border-sky-100/90 bg-white/92 p-6 shadow-lg shadow-sky-900/10 sm:p-8"
+	class="rounded-3xl border border-sky-100/90 bg-white/90 p-6 shadow-lg shadow-sky-900/10 sm:p-8"
 >
 	<h1 class="mt-0 text-3xl font-bold">Privacy Policy</h1>
 	<p class="text-slate-700">

@@ -1,10 +1,10 @@
-import { json } from '@sveltejs/kit'
-import prisma from '$lib/server/prisma'
 import { summarizeConversation } from '$lib/server/ai'
 import { resolveRole } from '$lib/server/auth'
-import type { RequestHandler } from './$types'
+import prisma from '$lib/server/prisma'
 import type { ChatMessage } from '$lib/types/chat'
 import { ROLE } from '../../../../generated/prisma/enums'
+import type { RequestHandler } from './$types'
+import { json } from '@sveltejs/kit'
 
 export const POST: RequestHandler = async ({ locals }) => {
 	const { user } = await locals.safeGetSession()

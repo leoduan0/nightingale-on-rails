@@ -2,11 +2,11 @@
 	import * as Form from '$lib/components/ui/form'
 	import { Input } from '$lib/components/ui/input'
 	import * as Select from '$lib/components/ui/select'
+	import { ROLE } from '../../generated/prisma/enums'
 	import { formSchema, type FormSchema } from './schema'
+	import { toast } from 'svelte-sonner'
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms'
 	import { zod4Client } from 'sveltekit-superforms/adapters'
-	import { ROLE } from '../../generated/prisma/enums'
-	import { toast } from 'svelte-sonner'
 
 	let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } = $props()
 
@@ -26,7 +26,7 @@
 
 <section class="mx-auto max-w-xl">
 	<div
-		class="rounded-3xl border border-sky-100/90 bg-white/92 p-6 shadow-lg shadow-sky-900/10 sm:p-8"
+		class="rounded-3xl border border-sky-100/90 bg-white/90 p-6 shadow-lg shadow-sky-900/10 sm:p-8"
 	>
 		<p class="text-sm font-bold tracking-wide text-sky-700 uppercase">Create account</p>
 		<h1 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900">

@@ -63,7 +63,6 @@ model ClinicianPatient {
 
 model PatientConsent {
     id        String  @id @default(cuid())
-    version   String
     patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
     patientId String  @unique @map("patient_id")
 
@@ -73,10 +72,16 @@ model PatientConsent {
     @@map("patient_consent")
 }
 
+enum GENDER {
+    MALE
+    FEMALE
+    OTHER
+}
+
 model Questionnaire {
     id        String  @id @default(cuid())
     age       Int
-    gender    String
+    gender    GENDER
     summary   String?
     patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
     patientId String  @unique @map("patient_id")

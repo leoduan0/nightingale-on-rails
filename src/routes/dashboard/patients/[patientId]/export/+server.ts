@@ -1,9 +1,9 @@
+import { resolveRole } from '$lib/server/auth'
+import prisma from '$lib/server/prisma'
+import { ROLE } from '../../../../../generated/prisma/enums'
+import type { RequestHandler } from './$types'
 import { error } from '@sveltejs/kit'
 import PDFDocument from 'pdfkit'
-import prisma from '$lib/server/prisma'
-import { resolveRole } from '$lib/server/auth'
-import type { RequestHandler } from './$types'
-import { ROLE } from '../../../../../generated/prisma/enums'
 
 export const GET: RequestHandler = async ({ params, locals }) => {
 	const { user } = await locals.safeGetSession()

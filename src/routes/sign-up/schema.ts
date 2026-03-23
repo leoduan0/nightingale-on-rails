@@ -1,5 +1,5 @@
-import { z } from 'zod'
 import { ROLE } from '../../generated/prisma/enums'
+import { z } from 'zod'
 
 export const formSchema = z.object({
 	email: z.email(),

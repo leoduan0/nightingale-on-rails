@@ -1,8 +1,8 @@
-import { error } from '@sveltejs/kit'
-import prisma from '$lib/server/prisma'
 import { requireSession, resolveRole } from '$lib/server/auth'
-import type { PageServerLoad } from './$types'
+import prisma from '$lib/server/prisma'
 import { ROLE } from '../../../../generated/prisma/enums'
+import type { PageServerLoad } from './$types'
+import { error } from '@sveltejs/kit'
 
 export const load: PageServerLoad = async ({ params, locals }) => {
 	const { user } = await requireSession(locals)

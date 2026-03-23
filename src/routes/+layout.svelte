@@ -1,8 +1,9 @@
 <script lang="ts">
-	import './layout.css'
 	import { invalidate } from '$app/navigation'
-	import { onMount } from 'svelte'
+	import { page } from '$app/stores'
 	import { Toaster } from '$lib/components/ui/sonner'
+	import './layout.css'
+	import { onMount } from 'svelte'
 
 	let { data, children } = $props()
 	let { supabase, session } = $derived(data)
@@ -15,7 +16,6 @@
 		return () => data.subscription.unsubscribe()
 	})
 
-	import { page } from '$app/stores'
 	// import favicon from '$lib/assets/favicon.svg'
 
 	const nav = [

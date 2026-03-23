@@ -1,7 +1,7 @@
-import OpenAI from 'openai'
-import { z } from 'zod'
 import type { ChatMessage } from '$lib/types/chat'
 import { RISK_TIER } from '../../generated/prisma/enums'
+import OpenAI from 'openai'
+import { z } from 'zod'
 
 const openai = process.env.OPENAI_API_KEY
 	? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })

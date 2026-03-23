@@ -1,10 +1,10 @@
-import { redirect } from '@sveltejs/kit'
-import type { Actions, PageServerLoad } from './$types'
 import prisma from '$lib/server/prisma'
-import { message, superValidate } from 'sveltekit-superforms'
-import { formSchema } from './schema'
-import { zod4 } from 'sveltekit-superforms/adapters'
 import { ROLE } from '../../generated/prisma/enums'
+import type { Actions, PageServerLoad } from './$types'
+import { formSchema } from './schema'
+import { redirect } from '@sveltejs/kit'
+import { message, superValidate } from 'sveltekit-superforms'
+import { zod4 } from 'sveltekit-superforms/adapters'
 
 export const load: PageServerLoad = async ({ locals: { safeGetSession } }) => {
 	const { session } = await safeGetSession()

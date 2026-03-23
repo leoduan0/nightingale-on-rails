@@ -1,11 +1,11 @@
-import { json } from '@sveltejs/kit'
-import { z } from 'zod'
-import prisma from '$lib/server/prisma'
 import { generateAssistantReply } from '$lib/server/ai'
 import { resolveRole } from '$lib/server/auth'
-import type { RequestHandler } from './$types'
+import prisma from '$lib/server/prisma'
 import type { ChatMessage } from '$lib/types/chat'
 import { ROLE } from '../../../../generated/prisma/enums'
+import type { RequestHandler } from './$types'
+import { json } from '@sveltejs/kit'
+import { z } from 'zod'
 
 const schema = z.object({
 	message: z.string().min(1).max(3000)

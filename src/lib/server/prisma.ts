@@ -1,5 +1,5 @@
-import { PrismaClient } from '../../generated/prisma/client'
 import { DATABASE_URL } from '$env/static/private'
+import { PrismaClient } from '../../generated/prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 
 const adapter = new PrismaPg({
