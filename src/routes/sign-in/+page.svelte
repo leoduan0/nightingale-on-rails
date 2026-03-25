@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Form from '$lib/components/ui/form/index.js'
-	import { Input } from '$lib/components/ui/input/index.js'
+	import * as Form from '$lib/components/ui/form'
+	import { Input } from '$lib/components/ui/input'
 	import { formSchema, type FormSchema } from './schema'
 	import { toast } from 'svelte-sonner'
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms'

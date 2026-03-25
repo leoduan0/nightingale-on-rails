@@ -56,7 +56,7 @@ export const summarizeQuestionnaire = async (age: number, gender: string) => {
 		messages: [
 			{
 				role: 'system',
-				content: 'Summarize this demographic intake in one concise sentence.'
+				content: "Summarize this patient's demographics in one concise sentence."
 			},
 			{ role: 'user', content: `Age: ${age}\nGender: ${gender}` }
 		]

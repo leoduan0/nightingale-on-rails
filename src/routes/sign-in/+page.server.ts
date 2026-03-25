@@ -16,11 +16,12 @@ export const load: PageServerLoad = async ({ locals: { safeGetSession } }) => {
 	}
 }
 
-export const actions: Actions = {
+export const actions = {
 	default: async (event) => {
 		const {
 			locals: { supabase }
 		} = event
+
 		const form = await superValidate(event, zod4(formSchema))
 		if (!form.valid) {
 			return message(form, 'Please provide a valid email and password.', { status: 400 })
@@ -35,4 +36,4 @@ export const actions: Actions = {
 
 		return message(form, 'Signed in successfully!')
 	}
-}
+} satisfies Actions

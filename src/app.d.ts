@@ -1,3 +1,4 @@
+import type { ROLE } from './generated/prisma/enums'
 import { SupabaseClient, Session } from '@supabase/supabase-js'
 
 // See https://kit.svelte.dev/docs/types#app
@@ -12,6 +13,7 @@ declare global {
 		interface PageData {
 			session: Session | null
 			user?: Session['user'] | null
+			role?: ROLE | null
 		}
 		// interface PageState {}
 		// interface Platform {}
