@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (!user) redirect(303, '/sign-in')
 
 	const role = await resolveRole(locals)
-	if (role !== ROLE.PATIENT) throw error(403, 'Only patients can access intake chat.')
+	if (role !== ROLE.PATIENT) throw error(400, 'Only patients can access intake chat.')
 
 	const patient = await prisma.patient.findUnique({
 		where: { id: user.id },
@@ -19,7 +19,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 		}
 	})
 
-	if (!patient) throw error(404, 'Patient not found')
+	if (!patient) throw error(400, 'Patient not found')
 
 	return {
 		patient: {

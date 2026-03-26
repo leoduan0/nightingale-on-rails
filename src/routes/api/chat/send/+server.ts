@@ -31,11 +31,19 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	const transcript = (patient.conversation?.transcript as ChatMessage[] | null) ?? []
 	const nextTranscript: ChatMessage[] = [
 		...transcript,
-		{ role: 'user', content: parsed.data.message.trim(), ts: new Date().toISOString() }
+		{
+			role: 'user',
+			content: parsed.data.message.trim(),
+			ts: new Date().toISOString()
+		}
 	]
 
 	const assistant = await generateAssistantReply(nextTranscript)
-	nextTranscript.push({ role: 'assistant', content: assistant, ts: new Date().toISOString() })
+	nextTranscript.push({
+		role: 'assistant',
+		content: assistant,
+		ts: new Date().toISOString()
+	})
 
 	await prisma.conversation.upsert({
 		where: { patientId: patient.id },

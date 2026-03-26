@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state'
-	import { ROLE } from '../generated/prisma/enums'
 
 	const nav = [
 		{ href: '/', label: 'Home' },
 		{ href: '/privacy-policy', label: 'Privacy Policy' },
 		{ href: '/terms-of-service', label: 'Terms of Service' }
 	]
-
-	const role = page.data.role
 </script>
 
 <header class="sticky top-0 z-10 border-b border-sky-200/80 bg-white/86 backdrop-blur-xl">

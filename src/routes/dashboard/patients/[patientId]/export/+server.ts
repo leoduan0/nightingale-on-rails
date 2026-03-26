@@ -12,7 +12,9 @@ export const GET: RequestHandler = async ({ params, locals }) => {
 	const role = await resolveRole(locals)
 	if (role !== ROLE.CLINICIAN) throw error(403, 'Forbidden')
 
-	const clinician = await prisma.clinician.findUnique({ where: { id: user.id } })
+	const clinician = await prisma.clinician.findUnique({
+		where: { id: user.id }
+	})
 	if (!clinician) throw error(403, 'Forbidden')
 
 	const assignment = await prisma.clinicianPatient.findFirst({
@@ -56,7 +58,10 @@ export const GET: RequestHandler = async ({ params, locals }) => {
 
 	doc.fontSize(14).text('Chat Transcript')
 	const transcript =
-		(patient.conversation?.transcript as Array<{ role: string; content: string }> | null) ?? []
+		(patient.conversation?.transcript as Array<{
+			role: string
+			content: string
+		}> | null) ?? []
 	for (const line of transcript) {
 		doc.fontSize(11).text(`${line.role.toUpperCase()}: ${line.content}`)
 		doc.moveDown(0.4)

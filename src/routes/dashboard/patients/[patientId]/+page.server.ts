@@ -9,7 +9,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const role = await resolveRole(locals)
 	if (role !== ROLE.CLINICIAN) throw error(403, 'User is not clinician')
 
-	const clinician = await prisma.clinician.findUnique({ where: { id: user.id } })
+	const clinician = await prisma.clinician.findUnique({
+		where: { id: user.id }
+	})
 	if (!clinician) throw error(403, 'No Prisma clinician')
 
 	const assignment = await prisma.clinicianPatient.findFirst({

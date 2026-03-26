@@ -1,7 +1,3 @@
-<script lang="ts">
-	let { data } = $props()
-</script>
-
 <section
 	class="overflow-hidden rounded-3xl border border-sky-100/90 bg-white/82 p-8 shadow-lg shadow-sky-900/10 backdrop-blur"
 >

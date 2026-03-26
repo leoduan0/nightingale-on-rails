@@ -2,7 +2,7 @@ import { summarizeQuestionnaire } from '$lib/server/ai'
 import { requireSession, resolveRole } from '$lib/server/auth'
 import prisma from '$lib/server/prisma'
 import { ROLE } from '../../generated/prisma/enums'
-import { type PatientGetPayload } from '../../generated/prisma/models'
+import type { PatientGetPayload } from '../../generated/prisma/models'
 import type { Actions, PageServerLoad } from './$types'
 import { formSchema } from './schema'
 import { error, fail, redirect } from '@sveltejs/kit'
@@ -29,7 +29,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 		}
 	})
 
-	if (!patient) throw error(403, 'User has patient role but not patient profile')
+	if (!patient) throw error(400, 'User has patient role but not patient profile')
 
 	return {
 		role,
@@ -75,7 +75,9 @@ export const actions = {
 		const role = await resolveRole(locals)
 
 		if (role !== ROLE.PATIENT)
-			return message(form, 'Only patients can submit questionnaire.', { status: 400 })
+			return message(form, 'Only patients can submit questionnaire.', {
+				status: 400
+			})
 
 		const patient = await prisma.patient.findUnique({
 			where: { id: user.id },
@@ -85,14 +87,21 @@ export const actions = {
 		if (!patient) return message(form, 'No patient.', { status: 500 })
 
 		if (!patient.consent)
-			return message(form, 'Consent is required before intake.', { status: 400 })
+			return message(form, 'Consent is required before intake.', {
+				status: 400
+			})
 
 		const { age, gender } = form.data
 		const summary = await summarizeQuestionnaire(age, gender)
 
 		await prisma.questionnaire.upsert({
 			where: { patientId: patient.id },
-			create: { patient: { connect: { id: patient.id } }, age, gender, summary },
+			create: {
+				patient: { connect: { id: patient.id } },
+				age,
+				gender,
+				summary
+			},
 			update: { age, gender, summary }
 		})
 
