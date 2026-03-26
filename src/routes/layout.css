@@ -1,82 +1,83 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import '@fontsource-variable/nunito-sans';
+@import '@fontsource-variable/figtree';
 
 @custom-variant dark (&:is(.dark *));
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
 :root {
-	--background: oklch(0.986 0.012 228);
-	--foreground: oklch(0.31 0.045 242);
-	--card: oklch(0.995 0.008 220);
-	--card-foreground: oklch(0.3 0.04 241);
-	--popover: oklch(0.995 0.008 220);
-	--popover-foreground: oklch(0.3 0.04 241);
-	--primary: oklch(0.54 0.128 234);
-	--primary-foreground: oklch(0.986 0.008 225);
-	--secondary: oklch(0.954 0.024 226);
-	--secondary-foreground: oklch(0.36 0.06 240);
-	--muted: oklch(0.965 0.014 224);
-	--muted-foreground: oklch(0.52 0.036 242);
-	--accent: oklch(0.944 0.03 214);
-	--accent-foreground: oklch(0.39 0.06 232);
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.148 0.004 228.8);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.148 0.004 228.8);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.148 0.004 228.8);
+	--primary: oklch(0.508 0.118 165.612);
+	--primary-foreground: oklch(0.979 0.021 166.113);
+	--secondary: oklch(0.967 0.001 286.375);
+	--secondary-foreground: oklch(0.21 0.006 285.885);
+	--muted: oklch(0.963 0.002 197.1);
+	--muted-foreground: oklch(0.56 0.021 213.5);
+	--accent: oklch(0.963 0.002 197.1);
+	--accent-foreground: oklch(0.218 0.008 223.9);
 	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.905 0.025 228);
-	--input: oklch(0.91 0.024 228);
-	--ring: oklch(0.64 0.09 232);
-	--chart-1: oklch(0.78 0.07 222);
-	--chart-2: oklch(0.69 0.095 228);
-	--chart-3: oklch(0.62 0.11 232);
-	--chart-4: oklch(0.55 0.125 236);
-	--chart-5: oklch(0.48 0.105 242);
+	--border: oklch(0.925 0.005 214.3);
+	--input: oklch(0.925 0.005 214.3);
+	--ring: oklch(0.723 0.014 214.4);
+	--chart-1: oklch(0.845 0.143 164.978);
+	--chart-2: oklch(0.696 0.17 162.48);
+	--chart-3: oklch(0.596 0.145 163.225);
+	--chart-4: oklch(0.508 0.118 165.612);
+	--chart-5: oklch(0.432 0.095 166.913);
 	--radius: 0.625rem;
-	--sidebar: oklch(0.97 0.016 224);
-	--sidebar-foreground: oklch(0.3 0.04 242);
-	--sidebar-primary: oklch(0.55 0.125 235);
-	--sidebar-primary-foreground: oklch(0.985 0.01 225);
-	--sidebar-accent: oklch(0.95 0.026 218);
-	--sidebar-accent-foreground: oklch(0.39 0.06 232);
-	--sidebar-border: oklch(0.9 0.024 227);
-	--sidebar-ring: oklch(0.64 0.09 232);
+	--sidebar: oklch(0.987 0.002 197.1);
+	--sidebar-foreground: oklch(0.148 0.004 228.8);
+	--sidebar-primary: oklch(0.596 0.145 163.225);
+	--sidebar-primary-foreground: oklch(0.979 0.021 166.113);
+	--sidebar-accent: oklch(0.963 0.002 197.1);
+	--sidebar-accent-foreground: oklch(0.218 0.008 223.9);
+	--sidebar-border: oklch(0.925 0.005 214.3);
+	--sidebar-ring: oklch(0.723 0.014 214.4);
 }
 
 .dark {
-	--background: oklch(0.145 0 0);
-	--foreground: oklch(0.985 0 0);
-	--card: oklch(0.205 0 0);
-	--card-foreground: oklch(0.985 0 0);
-	--popover: oklch(0.205 0 0);
-	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.424 0.199 265.638);
-	--primary-foreground: oklch(0.97 0.014 254.604);
+	--background: oklch(0.148 0.004 228.8);
+	--foreground: oklch(0.987 0.002 197.1);
+	--card: oklch(0.218 0.008 223.9);
+	--card-foreground: oklch(0.987 0.002 197.1);
+	--popover: oklch(0.218 0.008 223.9);
+	--popover-foreground: oklch(0.987 0.002 197.1);
+	--primary: oklch(0.432 0.095 166.913);
+	--primary-foreground: oklch(0.979 0.021 166.113);
 	--secondary: oklch(0.274 0.006 286.033);
 	--secondary-foreground: oklch(0.985 0 0);
-	--muted: oklch(0.269 0 0);
-	--muted-foreground: oklch(0.708 0 0);
-	--accent: oklch(0.269 0 0);
-	--accent-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.275 0.011 216.9);
+	--muted-foreground: oklch(0.723 0.014 214.4);
+	--accent: oklch(0.275 0.011 216.9);
+	--accent-foreground: oklch(0.987 0.002 197.1);
 	--destructive: oklch(0.704 0.191 22.216);
 	--border: oklch(1 0 0 / 10%);
 	--input: oklch(1 0 0 / 15%);
-	--ring: oklch(0.556 0 0);
-	--chart-1: oklch(0.809 0.105 251.813);
-	--chart-2: oklch(0.623 0.214 259.815);
-	--chart-3: oklch(0.546 0.245 262.881);
-	--chart-4: oklch(0.488 0.243 264.376);
-	--chart-5: oklch(0.424 0.199 265.638);
-	--sidebar: oklch(0.205 0 0);
-	--sidebar-foreground: oklch(0.985 0 0);
-	--sidebar-primary: oklch(0.623 0.214 259.815);
-	--sidebar-primary-foreground: oklch(0.97 0.014 254.604);
-	--sidebar-accent: oklch(0.269 0 0);
-	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--ring: oklch(0.56 0.021 213.5);
+	--chart-1: oklch(0.845 0.143 164.978);
+	--chart-2: oklch(0.696 0.17 162.48);
+	--chart-3: oklch(0.596 0.145 163.225);
+	--chart-4: oklch(0.508 0.118 165.612);
+	--chart-5: oklch(0.432 0.095 166.913);
+	--sidebar: oklch(0.218 0.008 223.9);
+	--sidebar-foreground: oklch(0.987 0.002 197.1);
+	--sidebar-primary: oklch(0.696 0.17 162.48);
+	--sidebar-primary-foreground: oklch(0.262 0.051 172.552);
+	--sidebar-accent: oklch(0.275 0.011 216.9);
+	--sidebar-accent-foreground: oklch(0.987 0.002 197.1);
 	--sidebar-border: oklch(1 0 0 / 10%);
-	--sidebar-ring: oklch(0.556 0 0);
+	--sidebar-ring: oklch(0.56 0.021 213.5);
 }
 
 @theme inline {
-	--font-sans: 'Nunito Sans Variable', 'Avenir Next', 'Segoe UI', sans-serif;
+	--font-sans: 'Figtree Variable', sans-serif;
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -150,9 +151,33 @@
 	&:where([data-open]:not([data-open='false'])) {
 		@slot;
 	}
+	&:where([data-state='open']),
+	&:where([data-open]:not([data-open='false'])) {
+		@slot;
+	}
+	&:where([data-state='open']),
+	&:where([data-open]:not([data-open='false'])) {
+		@slot;
+	}
+	&:where([data-state='open']),
+	&:where([data-open]:not([data-open='false'])) {
+		@slot;
+	}
 }
 
 @custom-variant data-closed {
+	&:where([data-state='closed']),
+	&:where([data-closed]:not([data-closed='false'])) {
+		@slot;
+	}
+	&:where([data-state='closed']),
+	&:where([data-closed]:not([data-closed='false'])) {
+		@slot;
+	}
+	&:where([data-state='closed']),
+	&:where([data-closed]:not([data-closed='false'])) {
+		@slot;
+	}
 	&:where([data-state='closed']),
 	&:where([data-closed]:not([data-closed='false'])) {
 		@slot;
@@ -180,9 +205,33 @@
 	&:where([data-checked]:not([data-checked='false'])) {
 		@slot;
 	}
+	&:where([data-state='checked']),
+	&:where([data-checked]:not([data-checked='false'])) {
+		@slot;
+	}
+	&:where([data-state='checked']),
+	&:where([data-checked]:not([data-checked='false'])) {
+		@slot;
+	}
+	&:where([data-state='checked']),
+	&:where([data-checked]:not([data-checked='false'])) {
+		@slot;
+	}
 }
 
 @custom-variant data-unchecked {
+	&:where([data-state='unchecked']),
+	&:where([data-unchecked]:not([data-unchecked='false'])) {
+		@slot;
+	}
+	&:where([data-state='unchecked']),
+	&:where([data-unchecked]:not([data-unchecked='false'])) {
+		@slot;
+	}
+	&:where([data-state='unchecked']),
+	&:where([data-unchecked]:not([data-unchecked='false'])) {
+		@slot;
+	}
 	&:where([data-state='unchecked']),
 	&:where([data-unchecked]:not([data-unchecked='false'])) {
 		@slot;
@@ -216,9 +265,33 @@
 	&:where([data-disabled]:not([data-disabled='false'])) {
 		@slot;
 	}
+	&:where([data-disabled='true']),
+	&:where([data-disabled]:not([data-disabled='false'])) {
+		@slot;
+	}
+	&:where([data-disabled='true']),
+	&:where([data-disabled]:not([data-disabled='false'])) {
+		@slot;
+	}
+	&:where([data-disabled='true']),
+	&:where([data-disabled]:not([data-disabled='false'])) {
+		@slot;
+	}
 }
 
 @custom-variant data-active {
+	&:where([data-state='active']),
+	&:where([data-active]:not([data-active='false'])) {
+		@slot;
+	}
+	&:where([data-state='active']),
+	&:where([data-active]:not([data-active='false'])) {
+		@slot;
+	}
+	&:where([data-state='active']),
+	&:where([data-active]:not([data-active='false'])) {
+		@slot;
+	}
 	&:where([data-state='active']),
 	&:where([data-active]:not([data-active='false'])) {
 		@slot;
@@ -243,9 +316,27 @@
 	&:where([data-orientation='horizontal']) {
 		@slot;
 	}
+	&:where([data-orientation='horizontal']) {
+		@slot;
+	}
+	&:where([data-orientation='horizontal']) {
+		@slot;
+	}
+	&:where([data-orientation='horizontal']) {
+		@slot;
+	}
 }
 
 @custom-variant data-vertical {
+	&:where([data-orientation='vertical']) {
+		@slot;
+	}
+	&:where([data-orientation='vertical']) {
+		@slot;
+	}
+	&:where([data-orientation='vertical']) {
+		@slot;
+	}
 	&:where([data-orientation='vertical']) {
 		@slot;
 	}

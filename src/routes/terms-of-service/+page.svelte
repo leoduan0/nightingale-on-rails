@@ -1,6 +1,6 @@
-<section
-	class="rounded-3xl border border-sky-100/90 bg-white/90 p-6 shadow-lg shadow-sky-900/10 sm:p-8"
->
-	<h1 class="normal">Terms of Service</h1>
-	<p>Coming soon...</p>
-</section>
+<main class="flex-1 space-y-4 py-4 max-w-6xl mx-auto w-full">
+	<section class="rounded-3xl border border-border bg-card p-6 shadow-lg sm:p-8">
+		<h1 class="normal">Terms of Service</h1>
+		<p>Coming soon...</p>
+	</section>
+</main>

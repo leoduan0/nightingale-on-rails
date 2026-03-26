@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({ locals: { safeGetSession } }) => {
 	}
 }
 
-export const actions: Actions = {
+export const actions = {
 	default: async (event) => {
 		const {
 			locals: { supabase }
@@ -35,7 +35,9 @@ export const actions: Actions = {
 
 		const { email, password, firstName, lastName, role } = form.data
 
-		const { data } = await supabase.auth.signUp({ email, password })
+		const { data, error: supabaseError } = await supabase.auth.signUp({ email, password })
+
+		if (supabaseError) return message(form, supabaseError.message)
 
 		if (!data.user) throw error(500, 'No data.user')
 
@@ -65,4 +67,4 @@ export const actions: Actions = {
 
 		return message(form, 'Signed up successfully!')
 	}
-}
+} satisfies Actions

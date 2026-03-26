@@ -26,11 +26,6 @@ export const load: PageServerLoad = async ({ locals }) => {
 			firstName: patient.firstName,
 			consent: patient.consent,
 			conversation: patient.conversation
-				? {
-						transcript: patient.conversation.transcript,
-						endedAt: patient.conversation.endedAt
-					}
-				: null
 		}
 	}
 }

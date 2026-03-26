@@ -24,8 +24,11 @@
       "devDependencies": {
         "@eslint/compat": "^2.0.3",
         "@eslint/js": "^10.0.1",
+        "@fontsource-variable/figtree": "^5.2.10",
         "@fontsource-variable/inter": "^5.2.8",
         "@fontsource-variable/nunito-sans": "^5.2.7",
+        "@hugeicons/core-free-icons": "^4.0.0",
+        "@hugeicons/svelte": "^1.1.2",
         "@internationalized/date": "^3.12.0",
         "@lucide/svelte": "^1.7.0",
         "@sveltejs/adapter-auto": "^7.0.1",
@@ -47,6 +50,7 @@
         "globals": "^17.4.0",
         "mode-watcher": "^1.1.0",
         "postcss": "^8.5.8",
+        "prettier": "^3.8.1",
         "prettier-plugin-svelte": "^3.5.1",
         "prettier-plugin-tailwindcss": "^0.7.2",
         "prisma": "^7.5.0",
@@ -188,6 +192,8 @@
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.11", "", {}, "sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg=="],
 
+    "@fontsource-variable/figtree": ["@fontsource-variable/figtree@5.2.10", "", {}, "sha512-a5Gumbpy3mdd+Yg31g6Qb7CmjYbrfyutJa3bWfP5q8A4GclIOwX7mI+ZuSHsJnw/mHvW6r9oh1AHJcJTIxK4JA=="],
+
     "@fontsource-variable/inter": ["@fontsource-variable/inter@5.2.8", "", {}, "sha512-kOfP2D+ykbcX/P3IFnokOhVRNoTozo5/JxhAIVYLpea/UBmCQ/YWPBfWIDuBImXX/15KH+eKh4xpEUyS2sQQGQ=="],
 
     "@fontsource-variable/nunito-sans": ["@fontsource-variable/nunito-sans@5.2.7", "", {}, "sha512-rflH5HeAoNjIkwftStzQvxqCJhIS+usMr/lfslWg/RCa499B5qxyjo+74R/QMM0geQt4AY1URlG7wAR1iq6KPQ=="],
@@ -197,6 +203,10 @@
     "@hapi/topo": ["@hapi/topo@5.1.0", "", { "dependencies": { "@hapi/hoek": "^9.0.0" } }, "sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg=="],
 
     "@hono/node-server": ["@hono/node-server@1.19.9", "", { "peerDependencies": { "hono": "^4" } }, "sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw=="],
+
+    "@hugeicons/core-free-icons": ["@hugeicons/core-free-icons@4.0.0", "", {}, "sha512-bzfbKumv3ke3ajbe2MyXi9i0I/cdsZ6n/mO9EfIPNSL++pHLqs7nSGRIVUtjF4xrrEyVkfhxssv4Jek8DPA6gA=="],
+
+    "@hugeicons/svelte": ["@hugeicons/svelte@1.1.2", "", { "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-yYmLFE+tq/mJmmjNaGxnaA99+H9yOzZmWJOMxKd9g9EJ8FCTCG8jpTgzVSv5bpuXDjQZFIGJz+Z/syiXhrS0mA=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
