@@ -1,4 +1,4 @@
-import { ROLE } from '../../generated/prisma/enums'
+import { ROLE } from '$lib/generated/prisma/enums'
 import { z } from 'zod'
 
 export const formSchema = z.object({

@@ -5,7 +5,7 @@
 	import { Input } from '$lib/components/ui/input'
 	import * as Select from '$lib/components/ui/select'
 	import { Spinner } from '$lib/components/ui/spinner'
-	import { ROLE } from '../../generated/prisma/enums'
+	import { ROLE } from '$lib/generated/prisma/enums'
 	import { type FormSchema, formSchema } from './schema'
 	import { toast } from 'svelte-sonner'
 	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms'

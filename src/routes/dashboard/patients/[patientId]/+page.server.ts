@@ -1,6 +1,6 @@
+import { ROLE } from '$lib/generated/prisma/enums'
 import { requireSession, resolveRole } from '$lib/server/auth'
 import prisma from '$lib/server/prisma'
-import { ROLE } from '../../../../generated/prisma/enums'
 import type { PageServerLoad } from './$types'
 import { error } from '@sveltejs/kit'
 

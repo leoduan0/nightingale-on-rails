@@ -1,5 +1,5 @@
+import { ROLE } from '$lib/generated/prisma/enums'
 import prisma from '$lib/server/prisma'
-import { ROLE } from '../../generated/prisma/enums'
 import { error, redirect } from '@sveltejs/kit'
 
 export const requireSession = async (locals: App.Locals) => {

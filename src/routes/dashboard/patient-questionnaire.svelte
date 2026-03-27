@@ -3,7 +3,7 @@
 	import * as Form from '$lib/components/ui/form'
 	import { Input } from '$lib/components/ui/input'
 	import * as Select from '$lib/components/ui/select'
-	import { GENDER } from '../../generated/prisma/enums'
+	import { GENDER } from '$lib/generated/prisma/enums'
 
 	let { form, formData, enhance } = $props()
 </script>

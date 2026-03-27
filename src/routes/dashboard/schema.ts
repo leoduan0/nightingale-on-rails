@@ -1,4 +1,4 @@
-import { GENDER } from '../../generated/prisma/enums'
+import { GENDER } from '$lib/generated/prisma/enums'
 import { z } from 'zod'
 
 export const formSchema = z.object({

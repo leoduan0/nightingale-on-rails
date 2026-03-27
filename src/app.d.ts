@@ -1,4 +1,4 @@
-import type { ROLE } from './generated/prisma/enums'
+import type { ROLE } from '$lib/generated/prisma/enums'
 import { SupabaseClient, Session } from '@supabase/supabase-js'
 
 // See https://kit.svelte.dev/docs/types#app

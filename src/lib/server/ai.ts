@@ -1,5 +1,5 @@
+import { RISK_TIER } from '$lib/generated/prisma/enums'
 import type { ChatMessage } from '$lib/types/chat'
-import { RISK_TIER } from '../../generated/prisma/enums'
 import OpenAI from 'openai'
 import { z } from 'zod'
 
