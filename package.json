@@ -14,7 +14,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"db:generate": "prisma generate",
 		"db:push": "prisma db push",
-		"db:migrate": "prisma migrate dev"
+		"db:migrate": "prisma migrate dev",
+		"postinstall": "prisma generate"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.0.3",
