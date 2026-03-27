@@ -7,6 +7,7 @@ node_modules
 .wrangler
 /.svelte-kit
 /build
+/dist
 
 # OS
 .DS_Store
@@ -24,4 +25,4 @@ vite.config.ts.timestamp-*
 
 # Prisma
 
-src/lib/generated/
+src/lib/generated

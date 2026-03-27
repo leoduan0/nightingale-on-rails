@@ -23,20 +23,21 @@
 			</p>
 		</section>
 
-		<section class="space-y-3">
+		<section class="space-y-2">
 			<h3 class="text-sm font-semibold text-foreground">Product</h3>
-			<ul class="space-y-2 text-sm text-muted-foreground">
+			<ul class="space-y-2">
 				{#each productLinks as link (link.href)}
 					<li>
-						<a class="transition-colors hover:text-primary" href={resolve(link.href)}
-							>{link.label}</a
+						<a
+							class="text-sm text-muted-foreground hover:text-primary transition-colors"
+							href={resolve(link.href)}>{link.label}</a
 						>
 					</li>
 				{/each}
 			</ul>
 		</section>
 
-		<section class="space-y-3">
+		<section class="space-y-2">
 			<h3 class="text-sm font-semibold text-foreground">Legal</h3>
 			<ul class="space-y-2 text-sm text-muted-foreground">
 				{#each legalLinks as link (link.href)}

@@ -27,7 +27,7 @@
 	const { form: formData, enhance, submitting } = form
 </script>
 
-<main class="flex-1 space-y-4 py-4 w-full max-w-6xl mx-auto">
+<main class="flex-1 space-y-4 py-4 lg:max-w-6xl lg:mx-auto max-w-full mx-4">
 	<Card.Root class="w-full">
 		<Card.Header>
 			<Card.Title class="text-primary uppercase font-bold">Create account</Card.Title>

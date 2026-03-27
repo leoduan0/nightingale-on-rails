@@ -1,11 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import '@fontsource-variable/nunito-sans';
 @import '@fontsource-variable/figtree';
 
 @custom-variant dark (&:is(.dark *));
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
 
 :root {
 	--background: oklch(1 0 0);
@@ -122,9 +119,6 @@
 	* {
 		@apply border-border outline-ring/50;
 	}
-	html {
-		@apply font-sans;
-	}
 	body {
 		@apply bg-background text-foreground;
 		background-image:
@@ -133,32 +127,12 @@
 			linear-gradient(180deg, rgb(248 252 255 / 97%), rgb(238 247 255 / 96%));
 		background-attachment: fixed;
 	}
-	a {
-		@apply transition-colors;
+	html {
+		@apply font-sans;
 	}
 }
 
 @custom-variant data-open {
-	&:where([data-state='open']),
-	&:where([data-open]:not([data-open='false'])) {
-		@slot;
-	}
-	&:where([data-state='open']),
-	&:where([data-open]:not([data-open='false'])) {
-		@slot;
-	}
-	&:where([data-state='open']),
-	&:where([data-open]:not([data-open='false'])) {
-		@slot;
-	}
-	&:where([data-state='open']),
-	&:where([data-open]:not([data-open='false'])) {
-		@slot;
-	}
-	&:where([data-state='open']),
-	&:where([data-open]:not([data-open='false'])) {
-		@slot;
-	}
 	&:where([data-state='open']),
 	&:where([data-open]:not([data-open='false'])) {
 		@slot;
@@ -170,26 +144,6 @@
 	&:where([data-closed]:not([data-closed='false'])) {
 		@slot;
 	}
-	&:where([data-state='closed']),
-	&:where([data-closed]:not([data-closed='false'])) {
-		@slot;
-	}
-	&:where([data-state='closed']),
-	&:where([data-closed]:not([data-closed='false'])) {
-		@slot;
-	}
-	&:where([data-state='closed']),
-	&:where([data-closed]:not([data-closed='false'])) {
-		@slot;
-	}
-	&:where([data-state='closed']),
-	&:where([data-closed]:not([data-closed='false'])) {
-		@slot;
-	}
-	&:where([data-state='closed']),
-	&:where([data-closed]:not([data-closed='false'])) {
-		@slot;
-	}
 }
 
 @custom-variant data-checked {
@@ -197,49 +151,9 @@
 	&:where([data-checked]:not([data-checked='false'])) {
 		@slot;
 	}
-	&:where([data-state='checked']),
-	&:where([data-checked]:not([data-checked='false'])) {
-		@slot;
-	}
-	&:where([data-state='checked']),
-	&:where([data-checked]:not([data-checked='false'])) {
-		@slot;
-	}
-	&:where([data-state='checked']),
-	&:where([data-checked]:not([data-checked='false'])) {
-		@slot;
-	}
-	&:where([data-state='checked']),
-	&:where([data-checked]:not([data-checked='false'])) {
-		@slot;
-	}
-	&:where([data-state='checked']),
-	&:where([data-checked]:not([data-checked='false'])) {
-		@slot;
-	}
 }
 
 @custom-variant data-unchecked {
-	&:where([data-state='unchecked']),
-	&:where([data-unchecked]:not([data-unchecked='false'])) {
-		@slot;
-	}
-	&:where([data-state='unchecked']),
-	&:where([data-unchecked]:not([data-unchecked='false'])) {
-		@slot;
-	}
-	&:where([data-state='unchecked']),
-	&:where([data-unchecked]:not([data-unchecked='false'])) {
-		@slot;
-	}
-	&:where([data-state='unchecked']),
-	&:where([data-unchecked]:not([data-unchecked='false'])) {
-		@slot;
-	}
-	&:where([data-state='unchecked']),
-	&:where([data-unchecked]:not([data-unchecked='false'])) {
-		@slot;
-	}
 	&:where([data-state='unchecked']),
 	&:where([data-unchecked]:not([data-unchecked='false'])) {
 		@slot;
@@ -257,49 +171,9 @@
 	&:where([data-disabled]:not([data-disabled='false'])) {
 		@slot;
 	}
-	&:where([data-disabled='true']),
-	&:where([data-disabled]:not([data-disabled='false'])) {
-		@slot;
-	}
-	&:where([data-disabled='true']),
-	&:where([data-disabled]:not([data-disabled='false'])) {
-		@slot;
-	}
-	&:where([data-disabled='true']),
-	&:where([data-disabled]:not([data-disabled='false'])) {
-		@slot;
-	}
-	&:where([data-disabled='true']),
-	&:where([data-disabled]:not([data-disabled='false'])) {
-		@slot;
-	}
-	&:where([data-disabled='true']),
-	&:where([data-disabled]:not([data-disabled='false'])) {
-		@slot;
-	}
 }
 
 @custom-variant data-active {
-	&:where([data-state='active']),
-	&:where([data-active]:not([data-active='false'])) {
-		@slot;
-	}
-	&:where([data-state='active']),
-	&:where([data-active]:not([data-active='false'])) {
-		@slot;
-	}
-	&:where([data-state='active']),
-	&:where([data-active]:not([data-active='false'])) {
-		@slot;
-	}
-	&:where([data-state='active']),
-	&:where([data-active]:not([data-active='false'])) {
-		@slot;
-	}
-	&:where([data-state='active']),
-	&:where([data-active]:not([data-active='false'])) {
-		@slot;
-	}
 	&:where([data-state='active']),
 	&:where([data-active]:not([data-active='false'])) {
 		@slot;
@@ -310,39 +184,9 @@
 	&:where([data-orientation='horizontal']) {
 		@slot;
 	}
-	&:where([data-orientation='horizontal']) {
-		@slot;
-	}
-	&:where([data-orientation='horizontal']) {
-		@slot;
-	}
-	&:where([data-orientation='horizontal']) {
-		@slot;
-	}
-	&:where([data-orientation='horizontal']) {
-		@slot;
-	}
-	&:where([data-orientation='horizontal']) {
-		@slot;
-	}
 }
 
 @custom-variant data-vertical {
-	&:where([data-orientation='vertical']) {
-		@slot;
-	}
-	&:where([data-orientation='vertical']) {
-		@slot;
-	}
-	&:where([data-orientation='vertical']) {
-		@slot;
-	}
-	&:where([data-orientation='vertical']) {
-		@slot;
-	}
-	&:where([data-orientation='vertical']) {
-		@slot;
-	}
 	&:where([data-orientation='vertical']) {
 		@slot;
 	}
@@ -358,7 +202,7 @@
 
 @layer components {
 	a.normal {
-		@apply text-blue-500 hover:underline dark:text-blue-400;
+		@apply transition-colors hover:text-primary;
 	}
 	h1.normal {
 		@apply text-2xl font-bold;
